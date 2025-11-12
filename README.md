@@ -43,6 +43,7 @@ A modern **real-time chat application** built with:
 <img src="./Screenshots/Chats.png" alt="Messages with Reactions" width="600"/>
 
 
+
 ## ⚙️ Installation (Run Locally)
 
 ### 🧩 Backend (Server)
