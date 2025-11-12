@@ -35,14 +35,13 @@ A modern **real-time chat application** built with:
 ---
 
 ### 💬 Chat Room
-<img src="./Home.png" alt="Chat Room" width="600"/>
+<img src="./Screenshots/Home.png" alt="Chat Room" width="600"/>
 
 ---
 
 ### 🧵 Room Messages
-<img src="./Chats.png" alt="Messages with Reactions" width="600"/>
+<img src="./Screenshots/Chats.png" alt="Messages with Reactions" width="600"/>
 
----
 
 ## ⚙️ Installation (Run Locally)
 
@@ -52,7 +51,7 @@ cd server
 cp .env.example .env
 npm install
 npm run build
-npm run seed   # optional: seeds demo users (Alice & Bob)
+npm run seed   # optional: seeds demo users (Simo & Sonnie)
 npm start
 ````
 
