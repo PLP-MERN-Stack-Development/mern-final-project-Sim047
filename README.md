@@ -30,7 +30,7 @@ A modern **real-time chat application** built with:
 ## 🖼️ Screenshots
 
 ### 🔑 Login Page
-<img src="./Login.png" alt="Login Page" width="600"/>
+<img src="./Screenshots/Login.png" alt="Login Page" width="600"/>
 
 ---
 
