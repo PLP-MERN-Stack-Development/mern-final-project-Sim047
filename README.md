@@ -1,173 +1,224 @@
 
+---
 
-````
-# 💬 Rooms Chat — Real-time Chat Application
+# 💬 Rooms Chat — Real-Time Chat Application
 
-A modern **real-time chat application** built with:
+A modern **real-time chat platform** featuring rooms, direct messaging, reactions, typing indicators, online status, image uploads, and a clean, responsive UI.
 
-- ⚡ **React + Vite (frontend)**
-- 🧠 **Express + Socket.IO + MongoDB (backend)**
-- 🔐 **JWT Authentication**
-- 💬 **Room-based messaging**
-- 📸 **Image upload and reactions**
-- 🚀 Deployable on **Render** (server) and **Vercel** (client)
+Built with:
+
+* ⚛️ **React + Vite**
+* 🟦 **TypeScript**
+* 🧠 **Node.js + Express**
+* ⚡ **Socket.IO (real-time)**
+* 🗄️ **MongoDB + Mongoose**
+* 🔐 **JWT Authentication**
+* 🚀 Deployable on **Render** + **Vercel**
 
 ---
 
-## 🌟 Features
+# 🌟 Features
 
-✅ Real-time messaging with **Socket.IO**  
-✅ Room-based chats (**General**, **Tech**, **Random**)  
-✅ **Login/Register** with JWT  
-✅ **Image uploads** using Multer  
-✅ **Message reactions** (❤️ 👍 etc.)  
-✅ **Online/offline status indicators**  
-✅ **Read receipts & typing indicators**  
-✅ **Clean, responsive UI**
+### 🔌 Real-Time Messaging
+
+* Live chat powered by **Socket.IO**
+* Typing indicators
+* Delivered & Read receipts
+* Online/offline presence tracking
+* Auto-reconnect & room subscriptions
+
+### 💬 Rooms + Direct Messages
+
+* Public rooms (General, Tech, Random)
+* Private 1-to-1 conversations
+* Message search-ready structure
+
+### 🖼️ Media Support
+
+* Image uploads (Multer + Sharp)
+* Avatars with live update
+* Attachments appear inside chat bubbles
+
+### 😀 Extra Goodies
+
+* Emoji reactions (❤️ 🔥 😂 👍 etc.)
+* Clean light/dark dark-themed UI
+* Mobile-friendly responsive layout
+* Error handling + loading states
 
 ---
 
-## 🖼️ Screenshots
+# 🖼️ Screenshots
 
 ### 🔑 Login Page
+
 <img src="./Screenshots/Login.png" alt="Login Page" width="600"/>
 
 ---
 
+### 📝 Register Page
+
+<img src="./Screenshots/Register.png" alt="Register Page" width="600"/>
+
+---
+
 ### 💬 Chat Room
-<img src="./Screenshots/Home.png" alt="Chat Room" width="600"/>
+
+<img src="./Screenshots/Chats.png" alt="Chat Room" width="600"/>
 
 ---
 
-### 🧵 Room Messages
-<img src="./Screenshots/Chats.png" alt="Messages with Reactions" width="600"/>
+### 📱 Mobile View
 
-
-
-## ⚙️ Installation (Run Locally)
-
-### 🧩 Backend (Server)
-```bash
-cd server
-cp .env.example .env
-npm install
-npm run build
-npm run seed   # optional: seeds demo users (Simo & Sonnie)
-npm start
-````
-
-Server runs at **[http://localhost:5000](http://localhost:5000)**
+<img src="./screenshots/Mobile.png" alt="Mobile Chat UI" width="400"/>
 
 ---
 
-### 💻 Frontend (Client)
+# ⚙️ Installation — Local Development
+
+## 🧩 Backend (Server)
 
 ```bash
-cd client
+cd backend
 cp .env.example .env
 npm install
 npm run dev
 ```
 
-Frontend runs at **[http://localhost:5173](http://localhost:5173)**
+The backend starts at:
 
----
+```
+http://localhost:5000
+```
 
-## 🧾 Environment Variables
-
-### Server `.env`
+### Required `.env` values
 
 ```
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/chat_app
-JWT_SECRET=your_secret_here
-CLIENT_ORIGIN=http://localhost:5173
+MONGO_URI=your_mongo_connection_string
+JWT_SECRET=supersecret
+FRONTEND_URL=http://localhost:5173
+UPLOAD_DIR=uploads
 ```
 
-### Client `.env`
+---
+
+## 🖥️ Frontend (Client)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend starts at:
+
+```
+http://localhost:5173
+```
+
+Environment variable:
 
 ```
 VITE_API_URL=http://localhost:5000
-VITE_SOCKET_URL=http://localhost:5000
 ```
 
 ---
 
-## 🚀 Deployment Guide
+# 🧪 API Overview
 
-### 🌐 Deploy Backend on Render
+### 🔐 Authentication
 
-1. Push your project to GitHub.
-2. Create a **Web Service** on [Render](https://render.com/).
-3. Choose the `/server` folder as your root.
-4. Add these environment variables:
+* `POST /api/auth/register`
+* `POST /api/auth/login`
 
-   * `MONGO_URI`
-   * `JWT_SECRET`
-   * `CLIENT_ORIGIN=https://your-frontend.vercel.app`
-5. Build Command:
+### 👤 Users
 
-   ```bash
-   npm install && npm run build
-   ```
-6. Start Command:
+* `POST /api/users/avatar`
+* `GET /api/users/me`
 
-   ```bash
-   npm run start
-   ```
+### 💬 Messaging
 
----
+* `GET /api/messages/:room`
+* `DELETE /api/messages/:id`
+* `POST /api/files/upload`
 
-### 💨 Deploy Frontend on Vercel
+### ⚡ Socket.IO Events
 
-1. Create a project on [Vercel](https://vercel.com/).
-2. Choose the `/client` directory as the root.
-3. Add environment variable:
-
-   ```
-   VITE_API_URL=https://your-backend.onrender.com
-   ```
-4. Build Command:
-
-   ```bash
-   npm install && npm run build
-   ```
-5. Output Directory:
-
-   ```
-   dist
-   ```
+* `join_room`
+* `send_message`
+* `message_edited`
+* `delete_message`
+* `typing`
+* `presence_update`
+* `react`
+* `delivered`
+* `read`
 
 ---
 
-## 🧠 Default Demo Accounts
+# 🚀 Deployment Guide
 
-| Email                                         | Password |
-| --------------------------------------------- | -------- |
-| [simo@test.com](mailto:simo@test.com)         | 123456 |
-| [sonnie@test.com](mailto:sonnie@test.com)     | 123456 |
+## 🌐 Backend → Render.com
+
+### 1️⃣ Create new Web Service
+
+* Environment: **Node**
+* Root folder: `/backend`
+
+### 2️⃣ Set build & start commands:
+
+```
+Build Command: npm install
+Start Command: npm start
+```
+
+### 3️⃣ Add Environment Variables
+
+Match your `.env.example`
+
+### 4️⃣ Persistent Uploads
+
+Add a **Render Disk**:
+
+* Name: `chat_uploads`
+* Mount: `/backend/uploads`
+
+### 5️⃣ CORS Settings
+
+Ensure:
+
+```
+FRONTEND_URL=https://your-vercel-domain.vercel.app
+```
 
 ---
 
-## 🧰 Tech Stack
+## 🎨 Frontend → Vercel
 
-**Frontend:** React, Vite, Socket.IO Client, Axios, React Toastify
-**Backend:** Express, Socket.IO, MongoDB (Mongoose), TypeScript
-**Security:** JWT Auth, Helmet, HPP, Rate Limiting
-**Deployment:** Render (API), Vercel (Client)
+### 1️⃣ Import your GitHub repo
 
----
+Select the **frontend** folder.
 
-## 🧑‍💻 Developer
+### 2️⃣ Add env variable
 
-**Simo Web** — Full Stack Developer
-🚀 Built with ❤️ using the MERN + Socket.IO stack
+```
+VITE_API_URL=https://your-render-backend.onrender.com
+```
 
----
+### 3️⃣ Build settings:
 
-## 📝 License
+* **Framework:** Vite
+* **Build Command:** `npm run build`
+* **Output Directory:** `dist`
 
-MIT License © 2025
+### 4️⃣ Optional vercel.json
 
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
 ```
 

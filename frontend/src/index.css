@@ -1,0 +1,222 @@
+/* --------------------------------------------- */
+/* Tailwind Base                                  */
+/* --------------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================================= */
+/* THEME VARIABLES */
+/* ========================================================= */
+
+/* --- Light Theme (WhatsApp-style warm) --- */
+:root.light {
+  --bg: #f5f6f7;
+  --sidebar: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --card: #ffffff;
+  --border: #e6e8ec;
+
+  --bubble-mine: #d3f8c6;     /* WhatsApp light green */
+  --bubble-other: #ffffff;
+
+  --date-pill: #e9eef3;
+
+  --accent-start: #22d3ee;
+  --accent-end: #7c3aed;
+  --btn-text: #0b1220;
+}
+
+/* --- Dark Theme (Your deep blue aesthetic) --- */
+:root.dark {
+  --bg: #071029;
+  --sidebar: rgba(3,7,18,0.65);
+  --text: #e6eef8;
+  --muted: #9aa7bb;
+
+  --card: rgba(15,23,42,0.35);
+  --border: rgba(255,255,255,0.06);
+
+  --bubble-mine: rgba(34,211,238,0.10);
+  --bubble-other: rgba(255,255,255,0.04);
+
+  --date-pill: rgba(148,163,184,0.08);
+
+  --accent-start: #22d3ee;
+  --accent-end: #7c3aed;
+  --btn-text: #071029;
+}
+
+/* ============================================= */
+/* GLOBAL BASE */
+/* ============================================= */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ============================================= */
+/* SIDEBAR */
+/* ============================================= */
+.sidebar {
+  background: var(--sidebar);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  padding: 1rem;
+  backdrop-filter: blur(14px);
+  color: var(--text);
+}
+
+/* Profile avatar */
+.sidebar img {
+  border-radius: 0.6rem;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+/* Section Titles */
+.sidebar .section-title {
+  @apply text-xs uppercase font-semibold opacity-80 mt-4 mb-2;
+}
+
+/* ============================================= */
+/* MAIN CHAT PANEL */
+/* ============================================= */
+.main {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+}
+
+/* ============================================= */
+/* BUTTONS */
+/* ============================================= */
+.btn {
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: var(--btn-text);
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  border-radius: 0.6rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(31,41,55,0.16); }
+
+/* ============================================= */
+/* INPUTS */
+/* ============================================= */
+.input {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.7rem;
+  border-radius: 0.6rem;
+}
+.input::placeholder { color: var(--muted); }
+
+/* ============================================= */
+/* MESSAGE BUBBLES (WhatsApp-style flat top) */
+/* ============================================= */
+
+.message {
+  max-width: 70%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--bubble-other);
+  color: var(--text);
+  line-height: 1.38rem;
+
+  /* WhatsApp style: flat-top on one side */
+  border-top-left-radius: 0.25rem;
+}
+
+.msg-mine {
+  background: var(--bubble-mine);
+  margin-left: auto;
+  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 0.75rem;
+}
+
+/* Avatar next to message */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
+/* ============================================= */
+/* DATE SEPARATOR */
+/* ============================================= */
+.card-date {
+  background: var(--date-pill);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  margin: 1rem auto;
+  display: inline-block;
+}
+
+/* ============================================= */
+/* UNREAD MARKER */
+/* ============================================= */
+.unread-pill {
+  background: #f97316;
+  color: white;
+  padding: 0.25rem 0.7rem;
+  border-radius: 0.4rem;
+  font-size: 0.7rem;
+}
+
+/* ============================================= */
+/* COMPOSER */
+/* ============================================= */
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* ============================================= */
+/* REACTIONS */
+/* ============================================= */
+.reacted {
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: #071029;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+}
+
+/* ============================================= */
+/* UTILS */
+/* ============================================= */
+.text-muted { color: var(--muted); }
+
+* { transition: background-color .15s ease, color .15s ease; }
+
+/* ============================================= */
+/* RESPONSIVE */
+/* ============================================= */
+@media (max-width: 820px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; }
+  .message { max-width: 92%; }
+}
